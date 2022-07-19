@@ -1,14 +1,14 @@
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
   first_name: { type: String, required: true, maxLength: 100 },
-  family_name: { type: String, required: true, maxLength: 100 },
+  last_name: { type: String, required: true, maxLength: 100 },
   username: { type: String, required: true, maxLength: 100 },
   password: { type: String, required: true, minLength: 8 },
-  member: { type: boolean },
-  admin: { type: boolean },
+  member: { type: Boolean },
+  admin: { type: Boolean },
 });
 
 // Virtual for user's full name
