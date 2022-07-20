@@ -4,15 +4,24 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    ul()
+    if user 
+      ul()
       li 
         a(href="/") Members Only 
       li 
-        a(href="/create-message") Create Message 
+        a(href="/message") Create Message 
       li 
         a(href="/become-member") Become Member 
       li 
         a(href="/become-admin") Become Admin
       li 
         a(href="/log-out") Log Out
+    else 
+      ul()
+        li 
+          a(href="/") Members Only 
+        li 
+          a(href="/log-in") Log In
+        li 
+          a(href="/sign-up") Sign Up
     block content

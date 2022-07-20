@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1 New Message Form 
+
+    form(method="POST" action="/new")    
+        div.form-group
+            label(for="title") Title: 
+            input#title.form-control(type="text", placeholder="Title" name="title" value="")
+            label(for="message") Message:  
+            input#message.form-control(type="text", placeholder="Message" name="message" value="")
+
+        button(type="submit") Submit
+        
+
+    
