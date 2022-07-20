@@ -3,8 +3,9 @@ const router = express.Router();
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
-// Require controller
+// Require controllers
 let userController = require("../controllers/userController");
+let messageController = require("../controllers/messageController");
 
 // GET home page.
 router.get("/", function (req, res, next) {
@@ -30,9 +31,7 @@ router.get("/log-out", (req, res) => {
 });
 
 // GET Message page.
-router.get("/message", function (req, res, next) {
-  res.render("message-form");
-});
+router.get("/message", messageController.create_message_get);
 
 // POST signup page.
 router.post("/sign-up", userController.create_user_post);
@@ -47,8 +46,6 @@ router.post(
 );
 
 // POST Message page.
-router.post("/message", function (req, res, next) {
-  res.redirect("/");
-});
+router.post("/message", messageController.create_message_post);
 
 module.exports = router;
