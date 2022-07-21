@@ -9,8 +9,8 @@ block content
             input#username.form-control(type='text' name='username' value=(undefined===user ? '' : user.username) )
             label(for='password') Password:
             input#password.form-control(type='password' name='password' value=(undefined===user ? '' : user.password))
-            //label(for='password') Confirm Password:
-            //input#password.form-control(type='password' name='password' value=(undefined===user ? '' : user.password))
+            label(for='confirm-password') Confirm Password:
+            input#confirm-password.form-control(type='password' name='confirm-password' value=(undefined===user ? '' : user.confirm-password))
         
         button.btn.btn-primary(type='submit') Submit
 
