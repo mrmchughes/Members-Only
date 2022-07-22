@@ -4,11 +4,12 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
 // Require controllers
-let userController = require("../controllers/userController");
-let messageController = require("../controllers/messageController");
+const userController = require("../controllers/userController");
+const messageController = require("../controllers/messageController");
+const membershipController = require("../controllers/membershipController");
 
 // GET home page.
-router.get("/", function (req, res, next) {
+router.get("/", function (req, res) {
   res.render("index", { title: "Members Only", user: req.user });
 });
 
@@ -16,7 +17,7 @@ router.get("/", function (req, res, next) {
 router.get("/sign-up", userController.create_user_get);
 
 // GET Log-in page.
-router.get("/log-in", function (req, res, next) {
+router.get("/log-in", function (req, res) {
   res.render("log-in-form");
 });
 
@@ -33,6 +34,9 @@ router.get("/log-out", (req, res) => {
 // GET Message page.
 router.get("/message", messageController.create_message_get);
 
+// GET Become Member page.
+router.get("/become-member", userController.become_member_get);
+
 // POST signup page.
 router.post("/sign-up", userController.create_user_post);
 
@@ -47,5 +51,8 @@ router.post(
 
 // POST Message page.
 router.post("/message", messageController.create_message_post);
+
+// POST Become Member page.
+router.post("/become-member", userController.become_member_post);
 
 module.exports = router;

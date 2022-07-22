@@ -1,6 +1,6 @@
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
-let User = require("../models/user");
+const User = require("../models/user");
 
 // Display user create form on GET.
 exports.create_user_get = function (req, res, next) {
@@ -34,19 +34,89 @@ exports.create_user_post = [
   }),
   // Process request after validation and sanitization.
   (req, res, next) => {
+    bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
+      const errors = validationResult(req);
+
+      if (!errors.isEmpty()) {
+        res.render("sign-up-form", { errors: errors.array() });
+      } else {
+        let user = new User({
+          username: req.body.username,
+          password: hashedPassword,
+          member: false,
+          admin: false,
+        }).save((err) => {
+          if (err) {
+            return next(err);
+          }
+
+          res.redirect("/");
+        });
+      }
+    });
+  },
+];
+
+// Display Become Member form on GET.
+exports.become_member_get = function (req, res, next) {
+  User.findById(req.user.id, function (err, user) {
+    if (err) {
+      return next(err);
+    }
+    if (user == null) {
+      let err = new Error("User not found");
+      err.status = 404;
+      return next(err);
+    }
+    res.render("become-member-form", {
+      username: user.username,
+      id: user.id,
+      member: user.member,
+    });
+  });
+};
+
+// Handle User Becoming Member on POST.
+exports.become_member_post = [
+  // Validate and sanitize fields.
+  body("membershipCode").custom((value, { req }) => {
+    console.log(value);
+
+    if (value != 1234) {
+      throw new Error("Sorry, the Membership Code was wrong");
+    }
+
+    // Indicates the success of this synchronous custom validator
+    return true;
+  }),
+  // Process request after validation and sanitization.
+  (req, res, next) => {
     const errors = validationResult(req);
+
+    let user = new User({
+      username: req.user.username,
+      password: req.user.password,
+      member: true,
+      admin: false,
+    });
+
     if (!errors.isEmpty()) {
-      res.render("sign-up-form", { errors: errors.array() });
+      res.render("become-member-form", {
+        username: user.username,
+        id: user.id,
+        member: user.member,
+        errors: errors.array(),
+      });
     } else {
-      const user = new User({
-        username: req.body.username,
-        password: req.body.password,
-      }).save((err) => {
+      User.findByIdAndUpdate(req.params.id, user, {}, function (err) {
         if (err) {
           return next(err);
         }
-
-        res.redirect("/");
+        res.render("index", {
+          username: user.username,
+          id: user.id,
+          member: user.member,
+        });
       });
     }
   },
