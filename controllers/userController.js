@@ -1,4 +1,5 @@
 const { body, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
 let User = require("../models/user");
 
 // Display user create form on GET.
@@ -12,13 +13,15 @@ exports.create_user_post = [
   body("username")
     .trim()
     .isLength({ min: 1 })
-    .escape()
-    .withMessage("Username must be specified."),
+    .withMessage("username is required")
+    .isAlphanumeric()
+    .withMessage("username must only include alpha-numeric characters"),
   body("password")
     .trim()
-    .isLength({ min: 8 })
-    .escape()
-    .withMessage("Password must be at least 8 characters"),
+    .isStrongPassword()
+    .withMessage(
+      "Password must be at least 8 characters, include at least 1 lowercase letter, one uppercase letter, 1 number, and 1 symbol"
+    ),
   body("confirmpassword").custom((value, { req }) => {
     console.log(value);
 
@@ -33,7 +36,7 @@ exports.create_user_post = [
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).redirect("/sign-up");
+      res.render("sign-up-form", { errors: errors.array() });
     } else {
       const user = new User({
         username: req.body.username,
