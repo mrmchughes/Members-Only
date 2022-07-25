@@ -9,20 +9,19 @@ const Message = require("../models/message");
 const userController = require("../controllers/userController");
 const messageController = require("../controllers/messageController");
 
-// GET home page.
 router.get("/", function (req, res) {
-  async.parallel({
-    message_count: function (callback) {
-      Message.countDocuments({}, callback);
-    },
-  }),
-    function (err, results) {
+  Message.find({}, "title message timestamp user")
+    .sort({ timestamp: 1 })
+    .exec(function (err, list_messages) {
+      if (err) {
+        return next(err);
+      }
       res.render("index", {
         title: "Members Only",
         user: req.user,
-        messages: results,
+        messages: list_messages,
       });
-    };
+    });
 });
 
 // GET signup page.

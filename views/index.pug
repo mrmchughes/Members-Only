@@ -4,17 +4,25 @@ block content
   h1= title
   p Welcome to #{title}
 
-  if user
+  if error 
+    p Error loading homepage
+
+  else if user.member
     p=user.username 
     p=user.id 
     p=user.member
     p=user.admin
-  else 
-    p Not logged in
 
-  each message in messages 
-    li
+    each message in messages 
       p #{message.title}
       p #{message.message}
       p #{message.timestamp}
-      p #{message.user}
+      p #{message.user}        
+
+  else 
+    p Not logged in
+
+    each message in messages 
+        p #{message.title}
+        p #{message.message}
+        p Anonymous 
