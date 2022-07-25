@@ -9,6 +9,7 @@ const logger = require("morgan");
 const bcrypt = require("bcryptjs");
 
 const User = require("./models/user");
+const Message = require("./models/message");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -33,6 +34,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
 
 passport.use(
   new LocalStrategy((username, password, done) => {
@@ -64,11 +70,6 @@ passport.deserializeUser(function (id, done) {
   User.findById(id, function (err, user) {
     done(err, user);
   });
-});
-
-app.use(function (req, res, next) {
-  res.locals.currentUser = req.user;
-  next();
 });
 
 app.use(passport.initialize());

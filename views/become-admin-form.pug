@@ -1,9 +1,9 @@
 extends layout
 
 block content
-    h1 Become Member Form 
+    h1 Become Admin Form 
 
-    if user
+    if user.member
         p=user.username 
         p=user.id 
         p=user.member
@@ -11,8 +11,8 @@ block content
 
         form(method="POST" action="")
             div.form-group
-                label(for='membershipCode') Membership Code:
-                input#membershipCode.form-control(type='text' name='membershipCode' value='' )
+                label(for='adminCode') Admin Code:
+                input#adminCode.form-control(type='text' name='adminCode' value='' )
         
             button.btn.btn-primary(type='submit') Submit
         if errors 
@@ -20,4 +20,4 @@ block content
                 for error in errors
                     li!= error.msg
     else 
-        p Not logged in
+        p Not a member 

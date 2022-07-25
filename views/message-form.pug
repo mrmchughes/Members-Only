@@ -3,14 +3,21 @@ extends layout
 block content
     h1 New Message Form 
 
-    form(method="POST" action="")    
-        div.form-group
-            label(for="title") Title: 
-            input#title.form-control(type="text", placeholder="Title" name="title" value="")
-            label(for="message") Message:  
-            input#message.form-control(type="text", placeholder="Message" name="message" value="")
+    if user
+        p=user.username 
+        p=user.id 
+        p=user.member
+        p=user.admin
 
-        button(type="submit") Submit
+        form(method="POST" action="")    
+            div.form-group
+                label(for="title") Title: 
+                input#title.form-control(type="text", placeholder="Title" name="title" value="")
+                label(for="message") Message:  
+                input#message.form-control(type="text", placeholder="Message" name="message" value="")
+
+            button(type="submit") Submit
         
-
+    else 
+        p Please log in to write a message
     

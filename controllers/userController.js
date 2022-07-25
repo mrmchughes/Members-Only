@@ -15,7 +15,9 @@ exports.create_user_post = [
     .isLength({ min: 1 })
     .withMessage("username is required")
     .isAlphanumeric()
-    .withMessage("username must only include alpha-numeric characters"),
+    .withMessage(
+      "Username must only include alpha-numeric characters, and no spaces"
+    ),
   body("password")
     .trim()
     .isStrongPassword()
@@ -69,9 +71,7 @@ exports.become_member_get = function (req, res, next) {
       return next(err);
     }
     res.render("become-member-form", {
-      username: user.username,
-      id: user.id,
-      member: user.member,
+      user: req.user,
     });
   });
 };
@@ -98,25 +98,80 @@ exports.become_member_post = [
       password: req.user.password,
       member: true,
       admin: false,
+      _id: req.user.id,
     });
 
     if (!errors.isEmpty()) {
       res.render("become-member-form", {
+        user: req.user,
+        errors: errors.array(),
+      });
+    } else {
+      User.findByIdAndUpdate(req.user.id, user, {}, function (err) {
+        if (err) {
+          return next(err);
+        }
+        res.redirect("/");
+      });
+    }
+  },
+];
+
+// Display Become Admin form on GET.
+exports.become_admin_get = function (req, res, next) {
+  User.findById(req.user.id, function (err, user) {
+    if (err) {
+      return next(err);
+    }
+    if (user == null) {
+      let err = new Error("User not found");
+      err.status = 404;
+      return next(err);
+    }
+    res.render("become-admin-form", {
+      user: req.user,
+    });
+  });
+};
+
+// Handle User Becoming Admin on POST.
+exports.become_admin_post = [
+  // Validate and sanitize fields.
+  body("adminCode").custom((value, { req }) => {
+    console.log(value);
+
+    if (value != 1234) {
+      throw new Error("Sorry, the Admin Code was wrong");
+    }
+
+    // Indicates the success of this synchronous custom validator
+    return true;
+  }),
+  // Process request after validation and sanitization.
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    let user = new User({
+      username: req.user.username,
+      password: req.user.password,
+      member: true,
+      admin: true,
+      _id: req.user.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("become-admin-form", {
         username: user.username,
         id: user.id,
         member: user.member,
         errors: errors.array(),
       });
     } else {
-      User.findByIdAndUpdate(req.params.id, user, {}, function (err) {
+      User.findByIdAndUpdate(req.user.id, user, {}, function (err) {
         if (err) {
           return next(err);
         }
-        res.render("index", {
-          username: user.username,
-          id: user.id,
-          member: user.member,
-        });
+        res.redirect("/");
       });
     }
   },

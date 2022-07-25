@@ -2,7 +2,7 @@ let Message = require("../models/message");
 
 // Display message create form on GET.
 exports.create_message_get = function (req, res, next) {
-  res.render("message-form");
+  res.render("message-form", { user: req.user });
 };
 
 // Handle message create on POST.
