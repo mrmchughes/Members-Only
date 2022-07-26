@@ -9,6 +9,7 @@ const Message = require("../models/message");
 const userController = require("../controllers/userController");
 const messageController = require("../controllers/messageController");
 
+// GET Index page.
 router.get("/", function (req, res) {
   Message.find({}, "title message timestamp user")
     .sort({ timestamp: 1 })
@@ -63,8 +64,11 @@ router.post(
   })
 );
 
-// POST Message page.
+// POST Create Message
 router.post("/message", messageController.create_message_post);
+
+// POST Delete Message
+router.post("/", messageController.delete_message_post);
 
 // POST Become Member page.
 router.post("/become-member", userController.become_member_post);
