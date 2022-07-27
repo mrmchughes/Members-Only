@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 
 // Display user create form on GET.
-exports.create_user_get = function (req, res, next) {
+exports.create_user_get = function (req, res) {
   res.render("sign-up-form");
 };
 
@@ -80,8 +80,6 @@ exports.become_member_get = function (req, res, next) {
 exports.become_member_post = [
   // Validate and sanitize fields.
   body("membershipCode").custom((value, { req }) => {
-    console.log(value);
-
     if (value != 1234) {
       throw new Error("Sorry, the Membership Code was wrong");
     }
