@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 
 app.use(function (req, res, next) {
-  res.locals.user = req.user;
+  res.locals.currentUser = req.user;
   next();
 });
 
