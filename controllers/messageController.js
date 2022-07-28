@@ -7,11 +7,20 @@ exports.create_message_get = function (req, res) {
 
 // Handle message create on POST.
 exports.create_message_post = function (req, res, next) {
+  let currentDate = new Date();
+  let time =
+    currentDate.getHours() +
+    ":" +
+    currentDate.getMinutes() +
+    ":" +
+    currentDate.getSeconds();
+  let organizedDate = currentDate.toLocaleDateString();
+
   const message = new Message({
     title: req.body.title,
     message: req.body.message,
     user: req.user.username,
-    timestamp: new Date(),
+    timestamp: "Sent at: " + organizedDate + " " + time,
   }).save((err) => {
     if (err) {
       return next(err);

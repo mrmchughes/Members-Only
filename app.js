@@ -7,6 +7,10 @@ const LocalStrategy = require("passport-local");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const bcrypt = require("bcryptjs");
+const compression = require("compression");
+const helmet = require("helmet");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const User = require("./models/user");
 
@@ -15,11 +19,10 @@ const indexRouter = require("./routes/index");
 const app = express();
 
 //Set up mongoose connection
-let mongoose = require("mongoose");
-let mongoDB =
-  "mongodb+srv://mrmchughes27:B44UiH9hzG513I4X@cluster0.4antx.mongodb.net/?retryWrites=true&w=majority";
+const mongoose = require("mongoose");
+const mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-let db = mongoose.connection;
+const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // view engine setup
@@ -30,6 +33,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression());
+app.use(helmet());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 
