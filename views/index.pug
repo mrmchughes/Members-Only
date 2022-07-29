@@ -1,15 +1,12 @@
 extends layout
 
 block content
-  
-  
-
   if !user || !user.member
     div
       p Please log in to see message details
 
       each message in messages 
-        div.form-group
+        div.form-group(class="flex flex-col border-solid border border-black items-center")
           p #{message.title}
           p #{message.message}
           p Anonymous  
