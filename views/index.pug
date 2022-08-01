@@ -1,46 +1,43 @@
 extends layout
 
 block content
-  
-  
+  h1= title
+  p Welcome to #{title}
 
   if !user || !user.member
-    div
-      p Please log in to see message details
+    p Please log in to see message details
 
-      each message in messages 
-        div.form-group
-          p #{message.title}
-          p #{message.message}
-          p Anonymous  
+    each message in messages 
+      div.form-group
+        p #{message.title}
+        p #{message.message}
+        p Anonymous  
 
   else if !user.admin 
-    div
-      p=user.username 
-      p=user.member
-      p=user.admin
+    p=user.username 
+    p=user.member
+    p=user.admin
 
-      each message in messages 
+    each message in messages 
+      div.form-group
+        p #{message.title}
+        p #{message.message}
+        p #{message.timestamp}
+        p #{message.user}  
+                 
+  else 
+    p=user.username 
+    p=user.member
+    p=user.admin
+
+    each message in messages 
+      form(method="POST" action="")
         div.form-group
+          input#messageid.form-control(type='hidden',name='messageid', required='true', value=message._id )
+
           p #{message.title}
           p #{message.message}
           p #{message.timestamp}
           p #{message.user}  
-                 
-  else 
-    div
-      p=user.username 
-      p=user.member
-      p=user.admin
-
-      each message in messages 
-        form(method="POST" action="")
-          div.form-group
-            input#messageid.form-control(type='hidden',name='messageid', required='true', value=message._id )
-
-            p #{message.title}
-            p #{message.message}
-            p #{message.timestamp}
-            p #{message.user}  
-            
-          button(type='submit') Delete Message
+          
+        button(type='submit') Delete Message

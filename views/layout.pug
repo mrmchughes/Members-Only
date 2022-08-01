@@ -1,23 +1,27 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='/styles/style.css')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
   body
     if user 
-      div(class='float-left my-5 ml-3.5')       
+      ul()
+      li 
         a(href="/") Members Only 
-
-      div(class='float-right my-5 mr-3.5')          
-        a(href="/message") Create Message       
-        a(href="/become-member") Become Member         
-        a(href="/become-admin") Become Admin  
+      li 
+        a(href="/message") Create Message 
+      li 
+        a(href="/become-member") Become Member 
+      li 
+        a(href="/become-admin") Become Admin
+      li 
         a(href="/log-out") Log Out
     else 
-      div(class='float-left my-5 ml-3.5')
-        a(href="/") Members Only 
-
-      div(class='float-right my-5 mr-3.5')
-        a(href="/log-in") Log In       
-        a(href="/sign-up") Sign Up
-
+      ul()
+        li 
+          a(href="/") Members Only 
+        li 
+          a(href="/log-in") Log In
+        li 
+          a(href="/sign-up") Sign Up
     block content
