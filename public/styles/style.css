@@ -518,9 +518,6 @@ video {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
 .ml-3\.5 {
   margin-left: 0.875rem;
 }
@@ -533,49 +530,19 @@ video {
 .mr-3 {
   margin-right: 0.75rem;
 }
+.mt-5 {
+  margin-top: 1.25rem;
+}
 .block {
   display: block;
-}
-.flex {
-  display: flex;
 }
 .hidden {
   display: none;
 }
-.flex-col {
-  flex-direction: column;
-}
-.items-center {
-  align-items: center;
-}
-.overflow-hidden {
-  overflow: hidden;
-}
-.border {
-  border-width: 1px;
-}
-.border-solid {
-  border-style: solid;
-}
-.border-black {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+.list-none {
+  list-style-type: none;
 }
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-.bg-zinc-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(39 39 42 / var(--tw-bg-opacity));
-}
-.p-6 {
-  padding: 1.5rem;
-}
-.text-center {
-  text-align: center;
-}
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
