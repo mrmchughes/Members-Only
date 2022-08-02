@@ -3,25 +3,20 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(name="viewport" content="width=device-width,initial-scale=1.0")
   body
     if user 
-      ul()
-      li 
+      div(class="navbar")
         a(href="/") Members Only 
-      li 
-        a(href="/message") Create Message 
-      li 
-        a(href="/become-member") Become Member 
-      li 
-        a(href="/become-admin") Become Admin
-      li 
-        a(href="/log-out") Log Out
+        div(class="rightNavbar")          
+          a(href="/message") Create Message          
+          a(href="/become-member") Become Member         
+          a(href="/become-admin") Become Admin         
+          a(href="/log-out") Log Out
     else 
-      ul()
-        li 
-          a(href="/") Members Only 
-        li 
-          a(href="/log-in") Log In
-        li 
+      div(class="navbar")
+        a(href="/") Members Only 
+        div(class="rightNavbar")       
+          a(href="/log-in") Log In         
           a(href="/sign-up") Sign Up
     block content

@@ -1,12 +1,51 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-a {
-  color: #00b7ff;
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(39, 39, 42);
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
-ul {
-  list-style: none;
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar a:hover {
+  transform: scale(1.1);
+}
+
+.rightNavbar {
+  display: flex;
+}
+
+.rightNavbar a {
+  margin-left: 1.25rem;
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rightNavbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rightNavbar a {
+    margin-left: 0;
+  }
 }
