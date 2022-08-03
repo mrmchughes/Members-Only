@@ -7,15 +7,15 @@ html
   body
     if user 
       div(class="navbar")
-        a(href="/") Members Only 
+        a(href="/" class="homeLink") Members Only 
         div(class="rightNavbar")          
           a(href="/message") Create Message          
-          a(href="/become-member") Become Member         
-          a(href="/become-admin") Become Admin         
+          a(href="/become-member") Member         
+          a(href="/become-admin") Admin         
           a(href="/log-out") Log Out
     else 
       div(class="navbar")
-        a(href="/") Members Only 
+        a(href="/" class="homeLink") Members Only 
         div(class="rightNavbar")       
           a(href="/log-in") Log In         
           a(href="/sign-up") Sign Up
