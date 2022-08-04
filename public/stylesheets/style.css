@@ -36,6 +36,7 @@ body {
 .navbar a:hover {
   transform: scale(1.1);
   color: rgb(103 232 249);
+  text-shadow: 0 0 15px rgb(103 232 249 / 0.9);
 }
 
 .rightNavbar {
@@ -78,6 +79,7 @@ button {
   padding: 0.5rem;
   margin-top: 0.5rem;
   border-radius: 0.375rem;
+  box-shadow: 0 0 15px rgb(103 232 249 / 0.9);
 }
 
 button:hover {
@@ -86,13 +88,21 @@ button:hover {
 }
 
 .formInput {
-  box-shadow: 0 10px 15px -3px rgb(100 116 139 / 0.1);
-  border-width: 1px;
+  box-shadow: 0 0 15px rgb(103 232 249 / 0.9);
+  border-width: 2px;
+  border-color: rgb(103 232 249);
   border-radius: 0.25rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+
+label {
+  background-color: rgb(49 46 129);
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 0 15px rgb(103 232 249 / 0.9);
 }
 
 textarea {
@@ -103,13 +113,14 @@ textarea {
 
 .messageBox {
   border-style: solid;
-  border-width: 1px;
-  border-color: black;
+  border-width: 2px;
+  border-color: rgb(103 232 249);
   padding: 0.5rem;
   margin-top: 0.5rem;
   border-radius: 0.375rem;
-  background-color: rgb(192 38 211);
+  background-color: rgb(49 46 129);
   width: 40%;
+  box-shadow: 0 0 15px rgb(103 232 249 / 0.9);
 }
 
 .messageBox p {
