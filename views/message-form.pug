@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    p(class="messageFormHeader") New Message 
+    p(class="pageHeader") New Message 
 
     if user
         form(method="POST" action="")    
@@ -13,8 +13,8 @@ block content
                 label(for="message") Message:
             div.form-group  
                 textarea#message.form-control(type="text", placeholder="Message" name="message" value="" class="formInput")
-            div(class="submitButtonDiv")
-                button(type="submit" class="submitButton") Submit
+            div(class="buttonDiv")
+                button(type="submit") Submit
         
     else 
         p Please log in to write a message

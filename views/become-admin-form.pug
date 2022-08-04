@@ -1,19 +1,14 @@
 extends layout
 
 block content
-    h1 Become Admin Form 
-
     if user.member
-        p=user.username 
-        p=user.member
-        p=user.admin
-
         form(method="POST" action="")
             div.form-group
-                label(for='adminCode') Admin Code:
-                input#adminCode.form-control(type='text' name='adminCode' value='' )
-        
-            button.btn.btn-primary(type='submit') Submit
+                label(for='adminCode') Become Admin:
+            div.form-group
+                input#adminCode.form-control(type='text' placeholder="Enter Admin Code" name='adminCode' value='' class="formInput")
+            div(class="buttonDiv")
+                button(type="submit") Submit
         if errors 
             ul 
                 for error in errors

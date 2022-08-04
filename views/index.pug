@@ -1,43 +1,48 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-
   if !user || !user.member
-    p Please log in to see message details
+    p(class="pageHeader") Please log in and become a member to see message details.
 
-    each message in messages 
-      div.form-group
-        p #{message.title}
-        p #{message.message}
-        p Anonymous  
-
-  else if !user.admin 
-    p=user.username 
-    p=user.member
-    p=user.admin
-
-    each message in messages 
-      div.form-group
-        p #{message.title}
-        p #{message.message}
-        p #{message.timestamp}
-        p #{message.user}  
-                 
-  else 
-    p=user.username 
-    p=user.member
-    p=user.admin
-
-    each message in messages 
-      form(method="POST" action="")
-        div.form-group
-          input#messageid.form-control(type='hidden',name='messageid', required='true', value=message._id )
-
+    div(class="messagesDiv")
+      each message in messages 
+        div.form-group(class="messageBox")
           p #{message.title}
           p #{message.message}
-          p #{message.timestamp}
-          p #{message.user}  
-          
-        button(type='submit') Delete Message
+          p Posted by: Anonymous  
+
+  else if !user.admin 
+    p(class="pageHeader") Logged in: #{user.username}
+
+    div(class="messagesDiv")
+      each message in messages 
+        div.form-group(class="messageBox")
+          p(class="messageTitle") #{message.title}
+          br
+          p(class="messageBody") #{message.message}
+          br
+          hr
+          div(class="authorDiv")
+            p Posted by #{message.user} 
+            p #{message.timestamp} 
+                 
+  else 
+    p(class="pageHeader") Logged in: #{user.username}
+
+    div(class="messagesDiv")
+      each message in messages 
+        form(method="POST" action="" class="messageBox")
+          div.form-group
+            input#messageid.form-control(type='hidden',name='messageid', required='true', value=message._id )
+
+            div(class="deleteMessageTitle")  
+              p #{message.title}
+              button(type='submit') Delete Message
+            br
+            p(class="messageBody") #{message.message}
+            br
+            hr
+            div(class="authorDiv")
+              p Posted by #{message.user} 
+              p #{message.timestamp} 
+            

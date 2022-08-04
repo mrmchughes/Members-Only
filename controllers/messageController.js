@@ -20,7 +20,7 @@ exports.create_message_post = function (req, res, next) {
     title: req.body.title,
     message: req.body.message,
     user: req.user.username,
-    timestamp: "Sent at: " + organizedDate + " " + time,
+    timestamp: organizedDate + " " + time,
   }).save((err) => {
     if (err) {
       return next(err);

@@ -1,18 +1,24 @@
 extends layout
 
 block content
-    h1 Sign Up Form 
+    p(class="pageHeader") Sign Up 
 
-    form(method="POST" action="")
+    form(method="POST" action="")        
         div.form-group
-            label(for='username') Username:
-            input#username.form-control(type='text' name='username' value='' )
-            label(for='password') Password:
-            input#password.form-control(type='password' name='password' value='')
+            label(for="username") Username:
+        div.form-group 
+            input#username.form-control(type="text", placeholder="Username" name="username" value="" class="formInput")
+        div.form-group
+            label(for="password") Password:
+        div.form-group  
+            input#password.form-control(type="password", placeholder="Password" name="password" value="" class="formInput")
+        div.form-group
             label(for='confirmpassword') Confirm Password:
-            input#confirmpassword.form-control(type='password' name='confirmpassword' value='')
-        
-        button.btn.btn-primary(type='submit') Submit
+        div.form-group  
+            input#confirmpassword.form-control(type="password", placeholder="Password" name="confirmpassword" value="" class="formInput")
+            
+        div(class="buttonDiv")
+            button(type="submit") Submit
     if errors 
         ul 
             for error in errors

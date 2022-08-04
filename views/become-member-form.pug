@@ -1,19 +1,14 @@
 extends layout
 
 block content
-    h1 Become Member Form 
-
     if user
-        p=user.username  
-        p=user.member
-        p=user.admin
-
         form(method="POST" action="")
             div.form-group
-                label(for='membershipCode') Membership Code:
-                input#membershipCode.form-control(type='text' name='membershipCode' value='' )
-        
-            button.btn.btn-primary(type='submit') Submit
+                label(for='membershipCode') Become a Member:
+            div.form-group
+                input#membershipCode.form-control(type='text' placeholder="Enter Membership Code" name='membershipCode' value='' class="formInput")
+            div(class="buttonDiv")
+                button(type="submit") Submit
         if errors 
             ul 
                 for error in errors

@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+  background-image: url("../images/background.png");
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
 .navbar {
   display: flex;
   flex-direction: row;
@@ -27,7 +35,7 @@
 
 .navbar a:hover {
   transform: scale(1.1);
-  color: rgb(165 243 252);
+  color: rgb(103 232 249);
 }
 
 .rightNavbar {
@@ -38,8 +46,13 @@
   margin-left: 1.25rem;
 }
 
-.messageFormHeader {
-  font-size: 1.25rem;
+.pageHeader {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.logInMessage {
+  font-size: 1.125rem;
   text-align: center;
 }
 
@@ -50,15 +63,15 @@
   font-size: 1.125rem;
 }
 
-.submitButtonDiv {
+.buttonDiv {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.submitButton {
+button {
   text-align: center;
-  background-color: rgb(229 231 235);
+  background-color: rgb(103 232 249);
   border-style: solid;
   border-width: 1px;
   border-color: black;
@@ -67,8 +80,8 @@
   border-radius: 0.375rem;
 }
 
-.submitButton:hover {
-  box-shadow: 0 10px 15px -3px rgb(100 116 139 / 0.1);
+button:hover {
+  box-shadow: 0 10px 15px -3px rgb(219 39 119 / 0.8);
   transform: scale(1.1);
 }
 
@@ -86,6 +99,55 @@ textarea {
   resize: none;
   width: 50%;
   height: 5rem;
+}
+
+.messageBox {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.375rem;
+  background-color: rgb(192 38 211);
+  width: 40%;
+}
+
+.messageBox p {
+  margin-top: 0.5rem;
+}
+
+.messagesDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.messageTitle {
+  display: flex;
+  justify-content: flex-start;
+  text-decoration-line: underline;
+  text-decoration-color: rgb(103 232 249);
+  font-size: 1.25rem;
+}
+
+.deleteMessageTitle {
+  display: flex;
+  justify-content: space-between;
+  text-decoration-line: underline;
+  text-decoration-color: rgb(103 232 249);
+  font-size: 1.25rem;
+}
+
+.messageBody {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+}
+
+.authorDiv {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 800px) {
