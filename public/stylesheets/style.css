@@ -10,6 +10,7 @@ body {
   background-size: cover;
   background-position: center;
   color: white;
+  font-family: "Roboto", sans-serif;
 }
 
 .navbar {
@@ -49,11 +50,6 @@ body {
 
 .pageHeader {
   font-size: 1.5rem;
-  text-align: center;
-}
-
-.logInMessage {
-  font-size: 1.125rem;
   text-align: center;
 }
 
@@ -184,6 +180,11 @@ textarea {
 
   .formInput {
     width: 50%;
+  }
+
+  .deleteMessageTitle {
+    flex-direction: column;
+    padding: 0.25rem;
   }
 
   textarea {
