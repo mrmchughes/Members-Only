@@ -9,7 +9,8 @@ const logger = require("morgan");
 const bcrypt = require("bcryptjs");
 const compression = require("compression");
 const helmet = require("helmet");
-require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
 
 const User = require("./models/user");
 
@@ -19,8 +20,7 @@ const app = express();
 
 //Set up mongoose connection
 const mongoose = require("mongoose");
-const dev_db_url = process.env.MONGODB_URI;
-const mongoDB = process.env.MONGODB_URI || dev_db_url;
+const mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
