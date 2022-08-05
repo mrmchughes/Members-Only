@@ -1,7 +1,7 @@
 # Members-Only
 
 I developed this Message Board app as part of The Odin Project's Fullstack [curriculum](https://www.theodinproject.com/lessons/nodejs-members-only).
-This project was another big milestone for me, as I got to practice my Node, CRUD and Authentication skills.
+This project was a blast for me to work on, as I got to improve my Express, CRUD and Authentication skills. 
 
 [Live Demo](https://calm-ravine-70177.herokuapp.com/)
 
