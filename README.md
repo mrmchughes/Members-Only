@@ -3,7 +3,7 @@
 I developed this Message Board app as part of The Odin Project's Fullstack [curriculum](https://www.theodinproject.com/lessons/nodejs-members-only).
 This project was a blast for me to work on, as I got to improve my Express, CRUD and Authentication skills. 
 
-[Live Demo](https://calm-ravine-70177.herokuapp.com/)
+[Live Demo](https://members-only-5tfh.onrender.com/)
 
 ## Screenshots
 [Main Page] ![image](https://user-images.githubusercontent.com/10659805/183207167-2758de0c-0e0b-4c38-98cd-181055cc5463.png)
